@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rick and Morty by JVC</title>
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+</head>
+<body>
+    <div class="card" id="card">
+        <div class="card_heading">
+            <h2 class="name" id="name"></h2>
+        </div>
+        <div class="content">
+           
+            <img class="img" id="img" src=""/>   
+            <div class="buttons">
+                <button onclick="setNew('prev')">Prev</button>
+                <button onclick="setNew('next')">Next</button>
+                <button onclick="setNew('random')">Random</button>
+                <button onclick="setNew('first')">Fisrt</button>
+                <button onclick="setNew('last')">Last</button>
+            </div>   
+            <div class="texts_container" id="texts">
+                <div class="text">
+                    <h3>Id:</h3>
+                    <p id="id"></p>
+                </div>
+                <div class="text">
+                    <h3>Status:</h3>
+                    <p id="status"></p>
+                </div>
+                <div class="text">
+                    <h3>Species:</h3>
+                    <p id="species"></p>
+                </div>
+                <div class="text">
+                    <h3>Type:</h3>
+                    <p id="type"></p>
+                </div>
+                <div class="text">
+                    <h3>Gender:</h3>
+                    <p id="gender"></p>
+                </div>
+                <div class="text">
+                    <h3>Origin:</h3>
+                    <p id="origin"></p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <script >
+        console.log("https://rickandmortyapi.com/api/character")
+        let id = 1
+
+        function setChar(id){
+            let request = new XMLHttpRequest()
+            request.open("GET", `https://rickandmortyapi.com/api/character/${id}`, false)
+            request.send()
+            const char  = JSON.parse(request.responseText)
+            document.getElementById("name").innerHTML = `${char.name ? char.name : "unknown"}`;
+            document.getElementById("id").innerHTML = `${char.id ? char.id : "unknown"}`;
+            document.getElementById("status").innerHTML = `${char.status ? char.status : "unknown"}`;
+            document.getElementById("species").innerHTML = `${char.species ? char.species : "unknown"}`;
+            document.getElementById("type").innerHTML = `${char.type ? char.type : "no-type" }`;
+            document.getElementById("gender").innerHTML = `${char.gender ? char.gender : "unknown"}`;
+            document.getElementById("origin").innerHTML = `${char.origin.name ? char.origin.name : "unknown"}`;
+            document.getElementById("img").src = `${char.image}`;
+        }
+        function setNew(type) {
+
+            if(type === "prev"){
+                id = id === 1 ? 1 : id - 1;
+            }
+            else if(type === "next"){
+                id = id === 826 ? 826 : id + 1;                
+            }
+            else if(type === "random"){
+                id = Math.floor(Math.random() * 826)
+            }
+            else if(type === "first"){
+                id = 1
+            }
+            else if(type === "last"){
+                id = 826
+            }
+            setChar(id)
+        }
+
+        function main(){
+            setChar(id)
+        }
+        main()
+    </script>
+</body>
+</html>
