@@ -4,27 +4,54 @@ body{
     height: 100vh;
     width: 100vw;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     font-family: 'Courier New', Courier, monospace;
+    background-image: url("background.png");
+    background-color: #4f545e;
+    color: snow;
 }
-
+.cover{
+    z-index: 2;
+    position: fixed;
+    text-align: center;
+}
+.links{
+    padding-top: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+header a{
+    text-decoration: none;
+    color: snow;
+    padding: 5px;
+}
+header button{
+    margin-top: 50px;
+    background-color: #aaf1e2;
+    border: none;
+    border-radius: 20px;
+    font-size: 15px;
+    cursor: pointer;
+    padding: 10px;
+}
 .card{
-    background-color: #F2D272;
     padding: 30px 50px;
-    border: 5px solid #03A66A;
     width: 40vw;
     height: fit-content;
-    display: flex;
+    display: none;
     flex-direction: column;
     align-items: center;
 }
 .content{
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    justify-content: center;
+    gap: 30px 100px;
+    justify-content: center;
 }
 .name{
-    font-size: 40px;
+    font-size: 50px;
     margin: 0;
     margin-bottom: 30px;
 }
@@ -47,19 +74,24 @@ body{
     margin: 20px 0px;
     font-size: 25px;
 }
+.image-buttons{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
 .img{
-    border: 5px solid #025959;
+    border: 5px solid white;
     width: 300px;
     height: 300px;
 }
 .buttons{
-    margin: 15px;
     width: 300px;
     display: flex;
     justify-content: space-around;
 }
 .buttons button{
-    background-color: #F25041;
+    background-color: #aaf1e2;
     border: none;
     border-radius: 20px;
     font-size: 15px;
@@ -72,11 +104,17 @@ body{
 }
 @media (max-width: 960px) {
     .card{
-        width: 100%;    
+        width: 100%;   
+        padding: 30px 0; 
+    }
+    .content{
+        flex-direction: column;
+        align-items: center;
     }
   }
 @media (max-width: 500px) {
     .texts_container{
         width: 100%;
+        padding-left: 20px;
     }
   }

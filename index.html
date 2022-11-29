@@ -9,20 +9,31 @@
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
 </head>
 <body>
-    <div class="card" id="card">
+    <header class="cover" id="cover" >
+        <h1>Consuming <br> Rick and Morty's API</h1>
+        <p>This project was created by JVC to practice some HTML, CSS and JavaScript.</p>
+        <button onclick="hide('cover')">CLICK HERE TO USE THE API</button>
+        <div class="links">
+            <a href="https://www.w3schools.com" target="_blank">Repository of this website</a>
+            <a href="https://www.w3schools.com" target="_blank">Github</a>
+        </div>
+    </header>
+    <main class="card" id="card">
         <div class="card_heading">
             <h2 class="name" id="name"></h2>
         </div>
         <div class="content">
            
-            <img class="img" id="img" src=""/>   
-            <div class="buttons">
-                <button onclick="setNew('prev')">Prev</button>
-                <button onclick="setNew('next')">Next</button>
-                <button onclick="setNew('random')">Random</button>
-                <button onclick="setNew('first')">Fisrt</button>
-                <button onclick="setNew('last')">Last</button>
-            </div>   
+            <div class="image-buttons">
+                <img class="img" id="img" src=""/>   
+                <div class="buttons">
+                    <button onclick="setNew('prev')">Prev</button>
+                    <button onclick="setNew('next')">Next</button>
+                    <button onclick="setNew('random')">Random</button>
+                    <button onclick="setNew('first')">First</button>
+                    <button onclick="setNew('last')">Last</button>
+                </div>   
+            </div>
             <div class="texts_container" id="texts">
                 <div class="text">
                     <h3>Id:</h3>
@@ -51,8 +62,15 @@
             </div>
         </div>
 
-    </div>
-    <script >
+    </main>
+    <script>
+        function hide(id){
+            const element = document.getElementById(id);
+            element.style.display = 'none';
+            const card = document.getElementById('card');
+            card.style.display = 'flex';
+        }
+
         console.log("https://rickandmortyapi.com/api/character")
         let id = 1
 
@@ -71,7 +89,6 @@
             document.getElementById("img").src = `${char.image}`;
         }
         function setNew(type) {
-
             if(type === "prev"){
                 id = id === 1 ? 1 : id - 1;
             }
