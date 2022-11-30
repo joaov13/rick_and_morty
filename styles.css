@@ -11,6 +11,80 @@ body{
     background-color: #4f545e;
     color: snow;
 }
+.neon{
+    position: relative;
+    display: inline-block;
+    padding: 15px 30px;
+    color: white;
+    text-transform: unset;
+    letter-spacing: 4px;
+    text-decoration: none;
+    font-size: 24px;
+    overflow: hidden;
+    transition: 0.2s;
+    background-color: transparent;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.neon:hover{
+
+    background-color: #88be44;
+    box-shadow: 0 0 10px #88be44, 0 0 30px #88be44, 0 0 50px #88be44;
+    transition-delay: 1s;
+}
+.neon span{
+    position: absolute;
+    display: block;
+}
+.neon span:nth-child(1){
+   top: 0;
+   left: -100%;
+   width: 100%;
+   height: 2px;
+   background: linear-gradient(90deg, transparent, #88be44);
+}
+.neon:hover span:nth-child(1){
+    left: 100%;
+    transition: 1s;
+}
+.neon span:nth-child(3){
+   bottom: 0;
+   right: -100%;
+   width: 100%;
+   height: 2px;
+   background: linear-gradient(270deg, transparent, #88be44);
+}
+.neon:hover span:nth-child(3){
+    right: 100%;
+    transition: 1s;
+    transition-delay: 0.5s;
+}
+.neon span:nth-child(2){
+   top: -100%;
+   right: 0;
+   width: 2px;
+   height: 100%;
+   background: linear-gradient(180deg, transparent, #88be44);
+}
+.neon:hover span:nth-child(2){
+    top: 100%;
+    transition: 1s;
+    transition-delay: 0.25s;
+}
+.neon span:nth-child(4){
+   bottom: -100%;
+   left: 0;
+   width: 2px;
+   height: 100%;
+   background: linear-gradient(360deg, transparent, #88be44);
+}
+.neon:hover span:nth-child(4){
+    bottom: 100%;
+    transition: 1s;
+    transition-delay: 0.75s;
+}
+
 .cover{
     z-index: 2;
     position: fixed;
@@ -22,6 +96,7 @@ body{
     flex-direction: column;
     gap: 10px;
 }
+
 header a{
     text-decoration: none;
     color: snow;
@@ -38,7 +113,7 @@ header button{
 }
 .card{
     padding: 30px 50px;
-    width: 40vw;
+    gap: 10px 25px;
     height: fit-content;
     display: none;
     flex-direction: column;
@@ -46,14 +121,15 @@ header button{
 }
 .content{
     display: flex;
+    min-height: 500px;
     justify-content: center;
     gap: 30px 100px;
-    justify-content: center;
 }
 .name{
     font-size: 50px;
     margin: 0;
-    margin-bottom: 30px;
+    width: 100%;
+    text-align: center;
 }
 .texts_container{
     display: flex;
@@ -75,17 +151,20 @@ header button{
     font-size: 25px;
 }
 .image-buttons{
+    padding-top: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-around;
+    
 }
 .img{
-    border: 5px solid white;
+    
+    border: 5px solid #aaf1e2;
     width: 300px;
     height: 300px;
 }
 .buttons{
+    padding-top: 30px;
     width: 300px;
     display: flex;
     justify-content: space-around;
@@ -110,6 +189,7 @@ header button{
     .content{
         flex-direction: column;
         align-items: center;
+        gap: 15px;
     }
   }
 @media (max-width: 500px) {

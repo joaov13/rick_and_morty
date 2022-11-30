@@ -9,19 +9,26 @@
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
 </head>
 <body>
+
     <header class="cover" id="cover" >
         <h1>Consuming <br> Rick and Morty's API</h1>
         <p>This project was created by JVC to practice some HTML, CSS and JavaScript.</p>
-        <button onclick="hide('cover')">CLICK HERE TO USE THE API</button>
+        <span class="neon" onclick="hide('cover')">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            USE THE API
+        </span>
         <div class="links">
             <a href="https://github.com/joaov13/rick_and_morty" target="_blank">Repository of this website</a>
             <a href="https://github.com/joaov13" target="_blank">Github</a>
         </div>
+
     </header>
+    
     <main class="card" id="card">
-        <div class="card_heading">
-            <h2 class="name" id="name"></h2>
-        </div>
+        <h2 class="name" id="name"></h2>
         <div class="content">
            
             <div class="image-buttons">
@@ -64,16 +71,23 @@
 
     </main>
     <script>
-        function hide(id){
-            const element = document.getElementById(id);
-            element.style.display = 'none';
-            const card = document.getElementById('card');
-            card.style.display = 'flex';
-        }
-
-        console.log("https://rickandmortyapi.com/api/character")
         let id = 1
-
+        function hide(id){
+            setTimeout(function(){
+                const element = document.getElementById(id);
+                element.style.display = 'none';
+                const card = document.getElementById('card');
+                card.style.display = 'flex';
+            }, window.innerWidth >= 960 ? 0 : 2000);  
+        }
+    
+        function getMaxChars(){
+            let request = new XMLHttpRequest()
+            request.open("GET", `https://rickandmortyapi.com/api/character`, false)
+            request.send()
+            const info  = JSON.parse(request.responseText)
+            return info.info.count;
+        }
         function setChar(id){
             let request = new XMLHttpRequest()
             request.open("GET", `https://rickandmortyapi.com/api/character/${id}`, false)
@@ -89,24 +103,25 @@
             document.getElementById("img").src = `${char.image}`;
         }
         function setNew(type) {
+            const max = getMaxChars()
+
             if(type === "prev"){
                 id = id === 1 ? 1 : id - 1;
             }
             else if(type === "next"){
-                id = id === 826 ? 826 : id + 1;                
+                id = id === max ? max : id + 1;                
             }
             else if(type === "random"){
-                id = Math.floor(Math.random() * 826)
+                id = Math.floor(Math.random() * max)
             }
             else if(type === "first"){
                 id = 1
             }
             else if(type === "last"){
-                id = 826
+                id = max
             }
             setChar(id)
         }
-
         function main(){
             setChar(id)
         }
